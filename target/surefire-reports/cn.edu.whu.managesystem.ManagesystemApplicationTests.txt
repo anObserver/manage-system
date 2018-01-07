@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: cn.edu.whu.managesystem.ManagesystemApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 8.572 sec - in cn.edu.whu.managesystem.ManagesystemApplicationTests

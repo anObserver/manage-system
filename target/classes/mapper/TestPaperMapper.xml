@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="java.cn.edu.whu.managesystem.TestPaperMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.whu.managesystem.model.TestPaper">
+    <id column="test_paper_id" jdbcType="INTEGER" property="testPaperId" />
+    <result column="test_paper_name" jdbcType="VARCHAR" property="testPaperName" />
+    <result column="question_ids" jdbcType="VARCHAR" property="questionIds" />
+    <result column="is_valid" jdbcType="INTEGER" property="isValid" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="update_time" jdbcType="INTEGER" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    test_paper_id, test_paper_name, question_ids, is_valid, create_time, update_time
+  </sql>
+</mapper>

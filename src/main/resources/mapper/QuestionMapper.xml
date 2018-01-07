@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.whu.managesystem.dao.QuestionMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.whu.managesystem.model.Question">
+    <id column="question_id" jdbcType="INTEGER" property="questionId" />
+    <result column="course_id" jdbcType="INTEGER" property="courseId" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="difficutily" jdbcType="INTEGER" property="difficutily" />
+    <result column="knowledge_point_id" jdbcType="INTEGER" property="knowledgePointId" />
+    <result column="power_point_id" jdbcType="INTEGER" property="powerPointId" />
+    <result column="context" jdbcType="LONGVARCHAR" property="context" />
+    <result column="answer" jdbcType="LONGVARCHAR" property="answer" />
+    <result column="is_valid" jdbcType="INTEGER" property="isValid" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="update_time" jdbcType="INTEGER" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    question_id, course_id, type_id, unit_id, difficutily, knowledge_point_id, power_point_id, context, answer
+    is_valid, create_time, update_time
+  </sql>
+</mapper>

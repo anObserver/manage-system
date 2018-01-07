@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.whu.managesystem.dao.AuthMapper">
+  <resultMap id="BaseResultMap" type="cn.edu.whu.managesystem.model.Auth">
+    <id column="auth_id" jdbcType="INTEGER" property="authId" />
+    <result column="auth_name" jdbcType="VARCHAR" property="authName" />
+    <result column="is_valid" jdbcType="INTEGER" property="isValid" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    auth_id, auth_name, is_valid, create_time, update_time
+  </sql>
+</mapper>
