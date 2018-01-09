@@ -21,7 +21,9 @@
     select
     <include refid="Base_Column_List"/>
     from knowledge_point
-    where is_valid = 1;
+    where course_id = #{courseId}
+    and   unit_id = #{unitId}
+    and is_valid = 1;
   </select>
 
   <insert id="add" parameterType="cn.edu.whu.managesystem.command.AddKnowledgePointCommand">

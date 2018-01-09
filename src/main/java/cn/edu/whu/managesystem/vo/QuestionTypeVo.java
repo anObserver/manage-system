@@ -11,4 +11,9 @@ import java.io.Serializable;
  */
 @Data
 public class QuestionTypeVo implements Serializable{
+    private Integer questionTypeId;
+    private String questionTypeName;
+    private Integer isValid;
+    private Integer createTime;
+    private Integer updateTime;
 }

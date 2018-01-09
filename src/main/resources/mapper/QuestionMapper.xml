@@ -19,6 +19,10 @@
     question_id, course_id, type_id, unit_id, difficutily, knowledge_point_id, power_point_id, context, answer
     is_valid, create_time, update_time
   </sql>
+  <sql id="Base_Insert_List">
+    course_id, type_id, unit_id, difficutily, knowledge_point_id, power_point_id, context, answer
+    is_valid, create_time, update_time
+  </sql>
   <update id="deleteQuestionById" parameterType="java.lang.Integer">
     update  question
     set is_valid = 0
@@ -26,21 +30,81 @@
   </update>
 
   <insert id="addQuestion" parameterType="cn.edu.whu.managesystem.command.InsertCommand">
-    <!--
     insert into question
-    <include refid="Base_Column_List"/>
-    values (#{questionId}, #{courseId}, #{typeId}, #{})
-    -->
+    <include refid="Base_Insert_List"/>
+    values (#{questionId}, #{courseId}, #{typeId}, #{unitId}, #{difficulity}, #{knowledgePointId}, #{powerPointId}, #{context}, #{answer})
   </insert>
 
   <update id="updateQuestion" parameterType="cn.edu.whu.managesystem.command.UpdateCommand">
     update question
+    set
+    update_time = unix_timestamp()
+    <if test="courseId != null">
+      and course_id = #{courseId}
+    </if>
+    <if test="typeId != null">
+      and type_id = #{typeId}
+    </if>
+    <if test="unitId != null">
+      and unit_id = #{unitId}
+    </if>
+    <if test="difficulity != null">
+      and difficulity = #{difficulity}
+    </if>
+    <if test="knowledgePointId != null">
+      and knowledge_point_id = #{knowledgePointId}
+    </if>
+    <if test="powerPointId != null">
+      and power_point_id = #{powerPointId}
+    </if>
+    <if test="context != null">
+      and context = #{context}
+    </if>
+    <if test="answer != null">
+      and answer = #{answer}
+    </if>
   </update>
 
   <select id="getQuestionByCond" parameterType="cn.edu.whu.managesystem.command.SelectByCondCommand" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from question
-    where 1 = 1
+    where is_valid = 1
+    <if test="courseId != null">
+      and course_id in
+      <foreach collection="courseIds" close=")" index="index" item="item" open="(" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="typeId != null">
+      and type_id in
+      <foreach collection="typeIds" close=")" index="index" item="item" open="(" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="unitId != null">
+      and unit_id in
+      <foreach collection="unitIds" close=")" index="index" item="item" open="(" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="difficulity != null">
+      and difficulity in
+      <foreach collection="difficulity" close=")" index="index" item="item" open="(" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="knowledgePointId != null">
+      and knowledge_point_id in
+      <foreach collection="knowledgePointIds" close=")" index="index" item="item" open="(" separator=",">
+        #{item}
+      </foreach>
+    </if>
+    <if test="powerPointId != null">
+      and power_point_id in
+      <foreach collection="powerPointIds" close=")" index="index" item="item" open="(" separator=",">
+        #{item}
+      </foreach>
+    </if>
   </select>
 </mapper>

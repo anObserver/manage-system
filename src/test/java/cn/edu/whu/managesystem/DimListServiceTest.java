@@ -1,9 +1,7 @@
 package cn.edu.whu.managesystem;
 
-import cn.edu.whu.managesystem.command.AddCourseAndUnitCommand;
-import cn.edu.whu.managesystem.command.AddKnowledgePointCommand;
-import cn.edu.whu.managesystem.command.AddPowerPointCommand;
-import cn.edu.whu.managesystem.command.AddQuestionTypeCommand;
+import cn.edu.whu.managesystem.command.*;
+import cn.edu.whu.managesystem.controller.DimListController;
 import cn.edu.whu.managesystem.service.DimListService;
 import cn.edu.whu.managesystem.vo.CourseAndUnitVo;
 import cn.edu.whu.managesystem.vo.PowerPointVo;
@@ -27,25 +25,6 @@ public class DimListServiceTest {
 
     @Autowired
     private DimListService dimListService;
-
-
-    @Test
-    public void getCourseAndUnitsTest() {
-        List<CourseAndUnitVo> courseAndUnits = dimListService.getCourseAndUnits();
-        System.out.println(courseAndUnits);
-    }
-
-    @Test
-    public void getPowerPointTest() {
-        List<PowerPointVo> powerPointVos = dimListService.getPowerPoints();
-        System.out.println(powerPointVos);
-    }
-
-    @Test
-    public void getQuestionTypeTest() {
-        List<QuestionTypeVo> questionTypeVos = dimListService.getQuestionTypes();
-        System.out.println(questionTypeVos);
-    }
 
     @Test
     public void addCourseAndUnitTest() {
@@ -78,4 +57,31 @@ public class DimListServiceTest {
         command.setUnitId(1);
         dimListService.addKnowledgePoint(command);
     }
+
+    @Test
+    public void getCourseAndUnitsTest() {
+        List<CourseAndUnitVo> courseAndUnits = dimListService.getCourseAndUnits();
+        System.out.println(courseAndUnits);
+    }
+
+    @Test
+    public void getPowerPointTest() {
+        List<PowerPointVo> powerPointVos = dimListService.getPowerPoints();
+        System.out.println(powerPointVos);
+    }
+
+    @Test
+    public void getQuestionTypeTest() {
+        List<QuestionTypeVo> questionTypeVos = dimListService.getQuestionTypes();
+        System.out.println(questionTypeVos);
+    }
+
+    @Test
+    public void getKnowledgePointTest() {
+        GetKnowledgePointCommand command = new GetKnowledgePointCommand();
+        command.setCourseId(1);
+        command.setUnitId(1);
+        dimListService.getKnowledgePoints(command);
+    }
+
 }

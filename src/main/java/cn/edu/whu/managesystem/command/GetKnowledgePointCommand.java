@@ -11,6 +11,6 @@ import java.io.Serializable;
  */
 @Data
 public class GetKnowledgePointCommand extends BaseCommand{
-    private Integer courserId;
+    private Integer courseId;
     private Integer unitId;
 }
