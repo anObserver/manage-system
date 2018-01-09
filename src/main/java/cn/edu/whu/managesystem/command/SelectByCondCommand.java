@@ -2,6 +2,8 @@ package cn.edu.whu.managesystem.command;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * @author jamesli
  * @email 984664077@qq.com
@@ -9,10 +11,10 @@ import lombok.Data;
  */
 @Data
 public class SelectByCondCommand extends BaseCommand{
-    private Integer courseId;
-    private Integer unit;
-    private Integer typeId;
-    private Integer knowledgePoint;
-    private Integer powerPoint;
-    private Integer difficulty;
+    private List<Integer> courseIds;
+    private List<Integer> unitIds;
+    private List<Integer> typeIds;
+    private List<Integer> knowledgePointIds;
+    private List<Integer> powerPointIds;
+    private List<Integer> difficulty;
 }

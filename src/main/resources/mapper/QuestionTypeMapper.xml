@@ -75,4 +75,10 @@
     from question_type
     where is_valid = 1
   </select>
+
+  <insert id="add" parameterType="cn.edu.whu.managesystem.command.AddQuestionTypeCommand">
+    insert into question_type
+    <include refid="Base_Column_List"/>
+    values (#{questionTypeId}, #{questionTypeName}, 1, unix_timestamp(), unix_timestamp())
+  </insert>
 </mapper>

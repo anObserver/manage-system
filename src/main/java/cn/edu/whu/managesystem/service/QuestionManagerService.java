@@ -24,4 +24,6 @@ public interface QuestionManagerService {
     public Integer updateQuestion(UpdateCommand command);
 
     public Integer addQuestion(InsertCommand command);
+
+
 }

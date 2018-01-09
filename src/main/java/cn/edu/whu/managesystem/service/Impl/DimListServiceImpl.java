@@ -1,6 +1,6 @@
 package cn.edu.whu.managesystem.service.Impl;
 
-import cn.edu.whu.managesystem.command.GetKnowledgePointCommand;
+import cn.edu.whu.managesystem.command.*;
 import cn.edu.whu.managesystem.dao.*;
 import cn.edu.whu.managesystem.model.CourseAndUnit;
 import cn.edu.whu.managesystem.model.KnowledgePoint;
@@ -82,5 +82,25 @@ public class DimListServiceImpl implements DimListService{
             questionTypeVos.add(questionTypeVo);
         }
         return questionTypeVos;
+    }
+
+    @Override
+    public Integer addCourseAndUnit(AddCourseAndUnitCommand command) {
+        return courseMapper.add(command);
+    }
+
+    @Override
+    public Integer addQuestionType(AddQuestionTypeCommand command) {
+        return questionTypeMapper.add(command);
+    }
+
+    @Override
+    public Integer addKnowledgePoint(AddKnowledgePointCommand command) {
+        return knowledgePointMapper.add(command);
+    }
+
+    @Override
+    public Integer addPowerPoint(AddPowerPointCommand command) {
+        return powerPointMapper.add(command);
     }
 }

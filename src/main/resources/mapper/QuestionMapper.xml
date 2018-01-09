@@ -19,4 +19,27 @@
     question_id, course_id, type_id, unit_id, difficutily, knowledge_point_id, power_point_id, context, answer
     is_valid, create_time, update_time
   </sql>
+  <update id="deleteQuestionById" parameterType="java.lang.Integer">
+    update  question
+    set is_valid = 0
+    where question_id = #{questionId, jdbcType=INTEGER}
+  </update>
+
+  <insert id="addQuestion" parameterType="cn.edu.whu.managesystem.command.InsertCommand">
+    insert into question
+    <include refid="Base_Column_List"/>
+    values (#{questionId}, #{courseId}, #{typeId}, #{})
+  </insert>
+
+  <update id="updateQuestion" parameterType="cn.edu.whu.managesystem.command.UpdateCommand">
+    update question
+    set
+  </update>
+
+  <select id="getQuestionByCond" parameterType="cn.edu.whu.managesystem.command.SelectByCondCommand" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from question
+    where
+  </select>
 </mapper>

@@ -14,10 +14,20 @@
   <sql id="Base_Column_List">
     course_id, unit_id, course_name, unit_name, is_valid, create_time, update_time
   </sql>
+  <sql id="Base_Insert_List">
+    unit_id, course_name, unit_name, is_valid, create_time, update_time
+  </sql>
   <select id="getAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from course
     where is_valid = 1
   </select>
+
+  <insert id="add" parameterType="cn.edu.whu.managesystem.command.AddCourseAndUnitCommand">
+    insert into course (
+    <include refid="Base_Insert_List"/>)
+    value
+    (#{command.getUnitId(), jdbcType=INTEGER}, #{command.courseName, jdbcType=VARCHAR}, #{command.unitName, jdbcType=VARCHAR}, 1, unix_timestamp(), unix_timestamp())
+  </insert>
 </mapper>

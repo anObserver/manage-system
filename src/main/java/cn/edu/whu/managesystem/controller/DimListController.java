@@ -1,6 +1,6 @@
 package cn.edu.whu.managesystem.controller;
 
-import cn.edu.whu.managesystem.command.GetKnowledgePointCommand;
+import cn.edu.whu.managesystem.command.*;
 import cn.edu.whu.managesystem.result.Result;
 import cn.edu.whu.managesystem.result.ResultGenerator;
 import cn.edu.whu.managesystem.service.DimListService;
@@ -28,10 +28,22 @@ public class DimListController {
         return ResultGenerator.generateSuccessResult(dimListService.getCourseAndUnits());
     }
 
+    @PostMapping("/addCourseAndUnit")
+    @ApiOperation(value = "新增课程和单元信息", response = Result.class)
+    public Result addCourseAndUnit(AddCourseAndUnitCommand command) {
+        return ResultGenerator.generateSuccessResult(dimListService.addCourseAndUnit(command));
+    }
+
     @PostMapping("/knowledgePoint")
     @ApiOperation(value = "获取知识点列表", response = Result.class)
     public Result getKnowledgePoints(GetKnowledgePointCommand command) {
         return ResultGenerator.generateSuccessResult(dimListService.getKnowledgePoints(command));
+    }
+
+    @PostMapping("/addKnowledgePoint")
+    @ApiOperation(value = "增加知识点", response = Result.class)
+    public Result addKnowledgePoint(AddKnowledgePointCommand command) {
+        return ResultGenerator.generateSuccessResult(dimListService.addKnowledgePoint(command));
     }
 
     @PostMapping("/powerPoint")
@@ -40,9 +52,21 @@ public class DimListController {
         return ResultGenerator.generateSuccessResult(dimListService.getPowerPoints());
     }
 
+    @PostMapping("/addPowerPoint")
+    @ApiOperation(value = "增加能力点", response = Result.class)
+    public Result addPowerPoint(AddPowerPointCommand command) {
+        return ResultGenerator.generateSuccessResult(dimListService.addPowerPoint(command));
+    }
+
     @PostMapping("/questionType")
     @ApiOperation(value = "获取题型列表", response = Result.class)
     public Result getQuestionTypes() {
         return ResultGenerator.generateSuccessResult(dimListService.getQuestionTypes());
+    }
+
+    @PostMapping("/addQuestionType")
+    @ApiOperation(value = "增加题型", response = Result.class)
+    public Result addQuestionType(AddQuestionTypeCommand command) {
+        return ResultGenerator.generateSuccessResult(dimListService.addQuestionType(command));
     }
 }

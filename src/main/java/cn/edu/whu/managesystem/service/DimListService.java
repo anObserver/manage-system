@@ -1,6 +1,6 @@
 package cn.edu.whu.managesystem.service;
 
-import cn.edu.whu.managesystem.command.GetKnowledgePointCommand;
+import cn.edu.whu.managesystem.command.*;
 import cn.edu.whu.managesystem.result.Result;
 import cn.edu.whu.managesystem.result.ResultGenerator;
 import cn.edu.whu.managesystem.vo.CourseAndUnitVo;
@@ -27,4 +27,12 @@ public interface DimListService {
     public List<PowerPointVo> getPowerPoints();
 
     public List<QuestionTypeVo> getQuestionTypes();
+
+    public Integer addCourseAndUnit(AddCourseAndUnitCommand command);
+
+    public Integer addQuestionType(AddQuestionTypeCommand command);
+
+    public Integer addKnowledgePoint(AddKnowledgePointCommand command);
+
+    public Integer addPowerPoint(AddPowerPointCommand command);
 }

@@ -1,5 +1,6 @@
 package cn.edu.whu.managesystem.dao;
 
+import cn.edu.whu.managesystem.command.AddCourseAndUnitCommand;
 import cn.edu.whu.managesystem.model.CourseAndUnit;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,4 +15,6 @@ import java.util.List;
 public interface CourseMapper {
 
     List<CourseAndUnit> getAll();
+
+    Integer add(AddCourseAndUnitCommand command);
 }

@@ -1,5 +1,6 @@
 package cn.edu.whu.managesystem.dao;
 
+import cn.edu.whu.managesystem.command.AddQuestionTypeCommand;
 import cn.edu.whu.managesystem.model.QuestionType;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,4 +15,6 @@ import java.util.List;
 public interface QuestionTypeMapper {
 
     public List<QuestionType> getAll();
+
+    public Integer add(AddQuestionTypeCommand command);
 }

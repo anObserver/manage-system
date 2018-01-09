@@ -9,4 +9,12 @@ import lombok.Data;
  */
 @Data
 public class InsertCommand extends BaseCommand{
+    private String context;
+    private String answer;
+    private Integer courseId;
+    private Integer unitId;
+    private Integer typeId;
+    private Integer difficutily;
+    private Integer knowledgePointId;
+    private Integer powerPointId;
 }
