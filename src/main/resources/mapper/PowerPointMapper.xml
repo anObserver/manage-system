@@ -12,6 +12,9 @@
   <sql id="Base_Column_List">
     id, name, is_valid, create_time, update_time
   </sql>
+  <sql id="Base_Insert_List">
+    name, is_valid, create_time, update_time
+  </sql>
 
   <select id="getAll" resultMap="BaseResultMap">
     select
@@ -23,8 +26,8 @@
 
   <insert id="add" parameterType="cn.edu.whu.managesystem.command.AddPowerPointCommand">
     insert into power_point
-    <include refid="Base_Column_List"/>
+    (<include refid="Base_Insert_List"/>)
     values
-    (#{name}, 1, unix_timestamp(), unix_timestamp())
+    (#{powerPoint, jdbcType=VARCHAR}, 1, unix_timestamp(), unix_timestamp())
   </insert>
 </mapper>

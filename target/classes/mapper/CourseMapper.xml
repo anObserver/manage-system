@@ -27,7 +27,7 @@
   <insert id="add" parameterType="cn.edu.whu.managesystem.command.AddCourseAndUnitCommand">
     insert into course (
     <include refid="Base_Insert_List"/>)
-    value
-    (#{command.getUnitId(), jdbcType=INTEGER}, #{command.courseName, jdbcType=VARCHAR}, #{command.unitName, jdbcType=VARCHAR}, 1, unix_timestamp(), unix_timestamp())
+    values
+    (#{unitId, jdbcType=INTEGER}, #{courseName, jdbcType=VARCHAR}, #{unitName, jdbcType=VARCHAR}, 1, unix_timestamp(), unix_timestamp())
   </insert>
 </mapper>

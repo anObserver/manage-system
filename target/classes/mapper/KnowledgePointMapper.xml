@@ -14,6 +14,9 @@
   <sql id="Base_Column_List">
     id, name, course_id, unit_id, is_valid, create_time, update_time
   </sql>
+  <sql id="Base_Insert_List">
+    name, course_id, unit_id, is_valid, create_time, update_time
+  </sql>
   <select id="getAll" parameterType="cn.edu.whu.managesystem.command.GetKnowledgePointCommand" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
@@ -22,9 +25,9 @@
   </select>
 
   <insert id="add" parameterType="cn.edu.whu.managesystem.command.AddKnowledgePointCommand">
-    insert into knowledte_point
-    <include refid="Base_Column_List"/>
+    insert into knowledge_point
+    (<include refid="Base_Insert_List"/>)
     values
-    (#{name}, #{courseId}, #{unitId}, 1, unix_timestamp(), unix_timestamp())
+    (#{knowledgePoint}, #{courseId}, #{unitId}, 1, unix_timestamp(), unix_timestamp())
   </insert>
 </mapper>

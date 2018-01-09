@@ -26,20 +26,21 @@
   </update>
 
   <insert id="addQuestion" parameterType="cn.edu.whu.managesystem.command.InsertCommand">
+    <!--
     insert into question
     <include refid="Base_Column_List"/>
     values (#{questionId}, #{courseId}, #{typeId}, #{})
+    -->
   </insert>
 
   <update id="updateQuestion" parameterType="cn.edu.whu.managesystem.command.UpdateCommand">
     update question
-    set
   </update>
 
   <select id="getQuestionByCond" parameterType="cn.edu.whu.managesystem.command.SelectByCondCommand" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from question
-    where
+    where 1 = 1
   </select>
 </mapper>
