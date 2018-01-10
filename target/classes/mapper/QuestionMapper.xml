@@ -6,7 +6,7 @@
     <result column="course_id" jdbcType="INTEGER" property="courseId" />
     <result column="type_id" jdbcType="INTEGER" property="typeId" />
     <result column="unit_id" jdbcType="INTEGER" property="unitId" />
-    <result column="difficutily" jdbcType="INTEGER" property="difficutily" />
+    <result column="difficulty" jdbcType="INTEGER" property="difficulty" />
     <result column="knowledge_point_id" jdbcType="INTEGER" property="knowledgePointId" />
     <result column="power_point_id" jdbcType="INTEGER" property="powerPointId" />
     <result column="context" jdbcType="LONGVARCHAR" property="context" />
@@ -70,37 +70,37 @@
     <include refid="Base_Column_List"/>
     from question
     where is_valid = 1
-    <if test="courseId != null">
+    <if test="courseIds != null">
       and course_id in
       <foreach collection="courseIds" close=")" index="index" item="item" open="(" separator=",">
         #{item}
       </foreach>
     </if>
-    <if test="typeId != null">
+    <if test="typeIds != null">
       and type_id in
       <foreach collection="typeIds" close=")" index="index" item="item" open="(" separator=",">
         #{item}
       </foreach>
     </if>
-    <if test="unitId != null">
+    <if test="unitIds != null">
       and unit_id in
       <foreach collection="unitIds" close=")" index="index" item="item" open="(" separator=",">
         #{item}
       </foreach>
     </if>
-    <if test="difficulity != null">
+    <if test="difficulty != null">
       and difficulity in
-      <foreach collection="difficulity" close=")" index="index" item="item" open="(" separator=",">
+      <foreach collection="difficulty" close=")" index="index" item="item" open="(" separator=",">
         #{item}
       </foreach>
     </if>
-    <if test="knowledgePointId != null">
+    <if test="knowledgePointIds != null">
       and knowledge_point_id in
       <foreach collection="knowledgePointIds" close=")" index="index" item="item" open="(" separator=",">
         #{item}
       </foreach>
     </if>
-    <if test="powerPointId != null">
+    <if test="powerPointIds != null">
       and power_point_id in
       <foreach collection="powerPointIds" close=")" index="index" item="item" open="(" separator=",">
         #{item}

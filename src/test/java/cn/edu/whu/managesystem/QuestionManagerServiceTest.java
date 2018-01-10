@@ -24,22 +24,26 @@ public class QuestionManagerServiceTest {
     private QuestionManagerService questionManagerService;
 
     @Test
-    public void getQuestionByCondTest(SelectByCondCommand command) {
-
+    public void getQuestionByCondTest() {
+        SelectByCondCommand command = new SelectByCondCommand();
+        System.out.println(questionManagerService.getQuestionsByCond(command));
     }
 
     @Test
-    public void deleteQuestionTest(DeleteCommand command) {
-
+    public void deleteQuestionTest() {
+        DeleteCommand command = new DeleteCommand();
+        System.out.println(questionManagerService.deleteQuestion(command));
     }
 
     @Test
-    public void updateQuestionTest(UpdateCommand command) {
-
+    public void updateQuestionTest() {
+        UpdateCommand command = new UpdateCommand();
+        System.out.println(questionManagerService.updateQuestion(command));
     }
 
     @Test
-    public void addQuestionTest(InsertCommand command) {
-
+    public void addQuestionTest() {
+        InsertCommand command = new InsertCommand();
+        System.out.println(questionManagerService.addQuestion(command));
     }
 }

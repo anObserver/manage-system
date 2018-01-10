@@ -6,6 +6,8 @@ import cn.edu.whu.managesystem.result.ResultGenerator;
 import cn.edu.whu.managesystem.service.DimListService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 @Api(value = "/list", description = "获取维度列表接口")
 public class DimListController {
 
+    Logger logger = LoggerFactory.getLogger(DimListController.class);
+
     @Autowired
     private DimListService dimListService;
 
@@ -30,19 +34,19 @@ public class DimListController {
 
     @PostMapping("/addCourseAndUnit")
     @ApiOperation(value = "新增课程和单元信息", response = Result.class)
-    public Result addCourseAndUnit(AddCourseAndUnitCommand command) {
+    public Result addCourseAndUnit(@RequestBody AddCourseAndUnitCommand command) {
         return ResultGenerator.generateSuccessResult(dimListService.addCourseAndUnit(command));
     }
 
     @PostMapping("/knowledgePoint")
     @ApiOperation(value = "获取知识点列表", response = Result.class)
-    public Result getKnowledgePoints(GetKnowledgePointCommand command) {
+    public Result getKnowledgePoints(@RequestBody GetKnowledgePointCommand command) {
         return ResultGenerator.generateSuccessResult(dimListService.getKnowledgePoints(command));
     }
 
     @PostMapping("/addKnowledgePoint")
     @ApiOperation(value = "增加知识点", response = Result.class)
-    public Result addKnowledgePoint(AddKnowledgePointCommand command) {
+    public Result addKnowledgePoint(@RequestBody AddKnowledgePointCommand command) {
         return ResultGenerator.generateSuccessResult(dimListService.addKnowledgePoint(command));
     }
 
@@ -54,7 +58,7 @@ public class DimListController {
 
     @PostMapping("/addPowerPoint")
     @ApiOperation(value = "增加能力点", response = Result.class)
-    public Result addPowerPoint(AddPowerPointCommand command) {
+    public Result addPowerPoint(@RequestBody AddPowerPointCommand command) {
         return ResultGenerator.generateSuccessResult(dimListService.addPowerPoint(command));
     }
 
@@ -66,7 +70,7 @@ public class DimListController {
 
     @PostMapping("/addQuestionType")
     @ApiOperation(value = "增加题型", response = Result.class)
-    public Result addQuestionType(AddQuestionTypeCommand command) {
+    public Result addQuestionType(@RequestBody AddQuestionTypeCommand command) {
         return ResultGenerator.generateSuccessResult(dimListService.addQuestionType(command));
     }
 }

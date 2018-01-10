@@ -19,7 +19,7 @@ public class Question implements Serializable{
 
     private Integer unitId;
 
-    private Integer difficutily;
+    private Integer difficulty;
 
     private Integer knowledgePointId;
 
