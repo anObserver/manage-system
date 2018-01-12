@@ -5,6 +5,7 @@ import cn.edu.whu.managesystem.command.SelectByCondCommand;
 import cn.edu.whu.managesystem.command.UpdateCommand;
 import cn.edu.whu.managesystem.model.Question;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

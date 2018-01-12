@@ -3,6 +3,7 @@ package cn.edu.whu.managesystem.dao;
 import cn.edu.whu.managesystem.command.AddQuestionTypeCommand;
 import cn.edu.whu.managesystem.model.QuestionType;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
