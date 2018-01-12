@@ -14,7 +14,7 @@ public class InsertCommand extends BaseCommand{
     private Integer courseId;
     private Integer unitId;
     private Integer typeId;
-    private Integer difficutily;
+    private Integer difficulty;
     private Integer knowledgePointId;
     private Integer powerPointId;
 }

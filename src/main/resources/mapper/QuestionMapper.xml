@@ -16,12 +16,10 @@
     <result column="update_time" jdbcType="INTEGER" property="updateTime" />
   </resultMap>
   <sql id="Base_Column_List">
-    question_id, course_id, type_id, unit_id, difficutily, knowledge_point_id, power_point_id, context, answer
-    is_valid, create_time, update_time
+    question_id, course_id, type_id, unit_id, difficulty, knowledge_point_id, power_point_id, context, answer, is_valid, create_time, update_time
   </sql>
   <sql id="Base_Insert_List">
-    course_id, type_id, unit_id, difficutily, knowledge_point_id, power_point_id, context, answer
-    is_valid, create_time, update_time
+    course_id, type_id, unit_id, difficulty, knowledge_point_id, power_point_id, context, answer, is_valid, create_time, update_time
   </sql>
   <update id="deleteQuestionById" parameterType="java.lang.Integer">
     update  question
@@ -31,8 +29,8 @@
 
   <insert id="addQuestion" parameterType="cn.edu.whu.managesystem.command.InsertCommand">
     insert into question
-    <include refid="Base_Insert_List"/>
-    values (#{questionId}, #{courseId}, #{typeId}, #{unitId}, #{difficulity}, #{knowledgePointId}, #{powerPointId}, #{context}, #{answer})
+    (<include refid="Base_Insert_List"/>)
+    values (#{courseId}, #{typeId}, #{unitId}, #{difficulty}, #{knowledgePointId}, #{powerPointId}, #{context}, #{answer}, 1, unix_timestamp(), unix_timestamp())
   </insert>
 
   <update id="updateQuestion" parameterType="cn.edu.whu.managesystem.command.UpdateCommand">
@@ -40,28 +38,28 @@
     set
     update_time = unix_timestamp()
     <if test="courseId != null">
-      and course_id = #{courseId}
+      , course_id = #{courseId}
     </if>
     <if test="typeId != null">
-      and type_id = #{typeId}
+      , type_id = #{typeId}
     </if>
     <if test="unitId != null">
-      and unit_id = #{unitId}
+      , unit_id = #{unitId}
     </if>
-    <if test="difficulity != null">
-      and difficulity = #{difficulity}
+    <if test="difficulty != null">
+      , difficulty = #{difficulty}
     </if>
     <if test="knowledgePointId != null">
-      and knowledge_point_id = #{knowledgePointId}
+      , knowledge_point_id = #{knowledgePointId}
     </if>
     <if test="powerPointId != null">
-      and power_point_id = #{powerPointId}
+      , power_point_id = #{powerPointId}
     </if>
     <if test="context != null">
-      and context = #{context}
+      , context = #{context}
     </if>
     <if test="answer != null">
-      and answer = #{answer}
+      , answer = #{answer}
     </if>
   </update>
 
@@ -89,7 +87,7 @@
       </foreach>
     </if>
     <if test="difficulty != null">
-      and difficulity in
+      and difficulty in
       <foreach collection="difficulty" close=")" index="index" item="item" open="(" separator=",">
         #{item}
       </foreach>
