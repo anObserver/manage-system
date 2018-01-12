@@ -6,7 +6,7 @@
 
     <!-- 常量引用 -->
     <properties>
-        <property name="LOG_HOME">/home/log</property>
+        <property name="LOG_HOME">/Users/alpha/log</property>
         <property name="FORMAT">%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</property>
     </properties>
 
@@ -48,7 +48,7 @@
         <logger name="org.apache.shiro.cache.ehcache.EhCache" level="WARN" />
         <!-- 对包进行更详细的配置 -->
         <!-- additivity表示是否追加,防止重复,因为root已经接收过一次了 -->
-        <logger name="cn.com.baseos" level="DEBUG" additivity="false">
+        <logger name="cn.edu.whu.managesystem" level="DEBUG" additivity="false">
             <appender-ref ref="console" />
             <appender-ref ref="file" />
         </logger>
