@@ -78,6 +78,6 @@ public class TimeInterceptor {
 
     private void printExecTime(String methodName, Long startTime, Long endTime) {
         long diff = endTime - startTime;
-        logger.info("%s耗时： %d + ms", methodName, diff);
+        logger.info("{}耗时： {}ms", methodName, diff);
     }
 }
