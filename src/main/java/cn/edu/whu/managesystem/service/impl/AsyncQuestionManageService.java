@@ -1,4 +1,4 @@
-package cn.edu.whu.managesystem.service.Impl;
+package cn.edu.whu.managesystem.service.impl;
 
 import cn.edu.whu.managesystem.command.DeleteCommand;
 import cn.edu.whu.managesystem.command.InsertCommand;

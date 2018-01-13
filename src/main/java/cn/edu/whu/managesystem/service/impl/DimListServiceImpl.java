@@ -1,4 +1,4 @@
-package cn.edu.whu.managesystem.service.Impl;
+package cn.edu.whu.managesystem.service.impl;
 
 import cn.edu.whu.managesystem.command.*;
 import cn.edu.whu.managesystem.model.CourseAndUnit;
@@ -40,6 +40,9 @@ public class DimListServiceImpl implements DimListService{
         List<CourseAndUnitVo> courseAndUnitVos = new ArrayList<>();
         try {
             List<CourseAndUnit> courseAndUnits = future.get();
+            if (courseAndUnits == null) {
+                return courseAndUnitVos;
+            }
             for (CourseAndUnit courseAndUnit : courseAndUnits) {
                 CourseAndUnitVo courseAndUnitVo = new CourseAndUnitVo();
                 BeanUtils.copyProperties(courseAndUnit, courseAndUnitVo);
@@ -47,6 +50,7 @@ public class DimListServiceImpl implements DimListService{
             }
         } catch (InterruptedException e) {
             logger.info("getCourseAndUnits interrupt: ", e);
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
             logger.info("getCourseAndUnits execute exception: ", e);
         }
@@ -59,6 +63,9 @@ public class DimListServiceImpl implements DimListService{
         List<KnowledgePointVo> knowledgePointVos = new ArrayList<>();
         try {
             List<KnowledgePoint> knowledgePoints = future.get();
+            if (knowledgePoints == null) {
+                return knowledgePointVos;
+            }
             for (KnowledgePoint knowledgePoint : knowledgePoints) {
                 KnowledgePointVo knowledgePointVo = new KnowledgePointVo();
                 BeanUtils.copyProperties(knowledgePoint, knowledgePointVo);
@@ -66,6 +73,7 @@ public class DimListServiceImpl implements DimListService{
             }
         } catch (InterruptedException e) {
             logger.info("getKnowledgePoints interrupt: ", e);
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
             logger.info("getKnowledgePoints execute exception: ", e);
         }
@@ -78,6 +86,9 @@ public class DimListServiceImpl implements DimListService{
         List<PowerPointVo> powerPointVos = new ArrayList<>();
         try {
             List<PowerPoint> powerPoints = future.get();
+            if (powerPoints == null) {
+                return powerPointVos;
+            }
             for (PowerPoint powerPoint : powerPoints) {
                 PowerPointVo powerPointVo = new PowerPointVo();
                 BeanUtils.copyProperties(powerPoint, powerPointVo);
@@ -85,6 +96,7 @@ public class DimListServiceImpl implements DimListService{
             }
         } catch (InterruptedException e) {
             logger.info("getPowerPoints interrupt: ", e);
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
             logger.info("getPowerPoints execute exception: ", e);
         }
@@ -97,6 +109,9 @@ public class DimListServiceImpl implements DimListService{
         List<QuestionTypeVo> questionTypeVos = new ArrayList<>();
         try {
             List<QuestionType> questionTypes = future.get();
+            if (questionTypes == null) {
+                return questionTypeVos;
+            }
             for (QuestionType questionType : questionTypes) {
                 QuestionTypeVo questionTypeVo = new QuestionTypeVo();
                 BeanUtils.copyProperties(questionType, questionTypeVo);
@@ -104,6 +119,7 @@ public class DimListServiceImpl implements DimListService{
             }
         } catch (InterruptedException e) {
             logger.info("getQuestionTypes interrupt: ", e);
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
             logger.info("getQuestionTypes execute exception: ", e);
         }

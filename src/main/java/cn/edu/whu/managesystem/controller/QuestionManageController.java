@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/questionManage")
-@Api(value = "/questionManage", description = "试题管理系统接口")
+@Api(value = "/questionManage")
 public class QuestionManageController {
 
     @Autowired

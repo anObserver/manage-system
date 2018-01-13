@@ -13,12 +13,14 @@ import java.util.concurrent.Future;
  */
 public class FutureUtils {
     private static final Logger logger = LoggerFactory.getLogger(FutureUtils.class);
+
     public static Integer getFutureValue(String methodName, Future<Integer> future) {
         Integer result = null;
         try {
             result = future.get();
         } catch (InterruptedException e) {
             logger.info(methodName + "interrupt: ", e);
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
             logger.info(methodName + "execute exception: ", e);
         }

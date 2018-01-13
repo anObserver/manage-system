@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/list")
-@Api(value = "/list", description = "获取维度列表接口")
+@Api(value = "/list")
 public class DimListController {
 
     Logger logger = LoggerFactory.getLogger(DimListController.class);

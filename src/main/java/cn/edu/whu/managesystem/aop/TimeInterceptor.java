@@ -19,19 +19,25 @@ public class TimeInterceptor {
 
     private Logger logger = LoggerFactory.getLogger(TimeInterceptor.class);
 
-    private static final long ONE_MINUTE = 60000;
+    /**
+     * service层面的统计耗时切面，类型必须为final String类型的，注解里要使用的变量只能是静态常量类型的
+     */
+    private static final String SERVER_POINT = "execution (* cn.edu.whu.managesystem.service.Impl.*.*(..))";
 
-    // service层面的统计耗时切面，类型必须为final String类型的，注解里要使用的变量只能是静态常量类型的
-    public static final String SERVER_POINT = "execution (* cn.edu.whu.managesystem.service.Impl.*.*(..))";
+    /**
+     * dao 层面的统计耗时
+     */
+    private static final String DAO_POINT = "execution (* cn.edu.whu.managesystem.dao.*.*(..))";
 
-    // dao 层面的统计耗时
-    public static final String DAO_POINT = "execution (* cn.edu.whu.managesystem.dao.*.*(..))";
+    /**
+     * controller层面统计耗时
+     */
+    private static final String WEB_POINT = "execution (* cn.edu.whu.managesystem.controller.*.*(..))";
 
-    // controller层面统计耗时
-    public static final String WEB_POINT = "execution (* cn.edu.whu.managesystem.controller.*.*(..))";
-
-    // test统计耗时
-    public static final String TEST_POINT = "execution (* cn.edu.whu.managesystem.*.*(..))";
+    /**
+     * test统计耗时
+     */
+    private static final String TEST_POINT = "execution (* cn.edu.whu.managesystem.*.*(..))";
 
     @Around(SERVER_POINT)
     public Object serviceTimeAround(ProceedingJoinPoint joinPoint) {
@@ -54,7 +60,7 @@ public class TimeInterceptor {
 
     private Object timeAround(ProceedingJoinPoint joinPoint) {
         Object object = null;
-        Object args[] = joinPoint.getArgs();
+        Object[] args = joinPoint.getArgs();
         long startTime = System.currentTimeMillis();
 
         try {
@@ -72,6 +78,6 @@ public class TimeInterceptor {
 
     private void printExecTime(String methodName, Long startTime, Long endTime) {
         long diff = endTime - startTime;
-        logger.info(methodName + "耗时： " + diff + "ms");
+        logger.info("%s耗时： %d + ms", methodName, diff);
     }
 }

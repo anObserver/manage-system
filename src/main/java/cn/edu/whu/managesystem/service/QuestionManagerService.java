@@ -17,13 +17,33 @@ import java.util.List;
 @Service
 public interface QuestionManagerService {
 
-    public List<QuestionVo> getQuestionsByCond(SelectByCondCommand command);
+    /**
+     * 根据条件获取试题
+     * @param command 前端传的条件
+     * @return 查询的试题
+     */
+    List<QuestionVo> getQuestionsByCond(SelectByCondCommand command);
 
-    public Integer deleteQuestion(DeleteCommand command);
+    /**
+     * 删除试题
+     * @param command 试题ID
+     * @return delete的返回值
+     */
+    Integer deleteQuestion(DeleteCommand command);
 
-    public Integer updateQuestion(UpdateCommand command);
+    /**
+     * 更新试题
+     * @param command 前端传的条件
+     * @return update的返回值
+     */
+    Integer updateQuestion(UpdateCommand command);
 
-    public Integer addQuestion(InsertCommand command);
+    /**
+     * 添加试题
+     * @param command 前端传的信息
+     * @return insert的返回值
+     */
+    Integer addQuestion(InsertCommand command);
 
 
 }

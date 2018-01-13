@@ -1,4 +1,4 @@
-package cn.edu.whu.managesystem.service.Impl;
+package cn.edu.whu.managesystem.service.impl;
 
 import cn.edu.whu.managesystem.command.DeleteCommand;
 import cn.edu.whu.managesystem.command.InsertCommand;
@@ -26,13 +26,14 @@ import static cn.edu.whu.managesystem.utils.FutureUtils.getFutureValue;
  * @date 2018/1/6
  */
 @Service
-public class QuestionManagerServiceImlp implements QuestionManagerService{
+public class QuestionManagerServiceImpl implements QuestionManagerService{
 
-    private Logger logger = LoggerFactory.getLogger(QuestionManagerServiceImlp.class);
+    private Logger logger = LoggerFactory.getLogger(QuestionManagerServiceImpl.class);
 
     @Autowired
     private AsyncQuestionManageService asyncQuestionManageService;
 
+    @Override
     public List<QuestionVo> getQuestionsByCond(SelectByCondCommand command) {
         List<QuestionVo> questionVos = new ArrayList<>();
         Future<List<Question>> future = asyncQuestionManageService.getQuestionsByCondFuture(command);
@@ -45,6 +46,7 @@ public class QuestionManagerServiceImlp implements QuestionManagerService{
             }
         } catch (InterruptedException e) {
             logger.info("GetQuestionbycond interrupt: ", e);
+            Thread.currentThread().interrupt();
         } catch (ExecutionException e) {
             logger.info("GetQuestionbycond execute excetipn: ", e);
         }
