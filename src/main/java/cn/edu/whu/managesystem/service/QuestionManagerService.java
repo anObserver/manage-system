@@ -4,7 +4,7 @@ import cn.edu.whu.managesystem.command.DeleteCommand;
 import cn.edu.whu.managesystem.command.InsertCommand;
 import cn.edu.whu.managesystem.command.SelectByCondCommand;
 import cn.edu.whu.managesystem.command.UpdateCommand;
-import cn.edu.whu.managesystem.model.Question;
+import cn.edu.whu.managesystem.vo.QuestionVo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public interface QuestionManagerService {
 
-    public List<Question> getQuestionsByCond(SelectByCondCommand command);
+    public List<QuestionVo> getQuestionsByCond(SelectByCondCommand command);
 
     public Integer deleteQuestion(DeleteCommand command);
 

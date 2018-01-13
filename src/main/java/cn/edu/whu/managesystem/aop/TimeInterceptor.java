@@ -22,7 +22,7 @@ public class TimeInterceptor {
     private static final long ONE_MINUTE = 60000;
 
     // service层面的统计耗时切面，类型必须为final String类型的，注解里要使用的变量只能是静态常量类型的
-    public static final String POINT = "execution (* cn.edu.whu.managesystem.service.Impl.*.*(..))";
+    public static final String SERVER_POINT = "execution (* cn.edu.whu.managesystem.service.Impl.*.*(..))";
 
     // dao 层面的统计耗时
     public static final String DAO_POINT = "execution (* cn.edu.whu.managesystem.dao.*.*(..))";
@@ -30,8 +30,16 @@ public class TimeInterceptor {
     // controller层面统计耗时
     public static final String WEB_POINT = "execution (* cn.edu.whu.managesystem.controller.*.*(..))";
 
-    @Around(POINT)
+    // test统计耗时
+    public static final String TEST_POINT = "execution (* cn.edu.whu.managesystem.*.*(..))";
+
+    @Around(SERVER_POINT)
     public Object serviceTimeAround(ProceedingJoinPoint joinPoint) {
+        return this.timeAround(joinPoint);
+    }
+
+    @Around(TEST_POINT)
+    public Object testTimeAround(ProceedingJoinPoint joinPoint) {
         return this.timeAround(joinPoint);
     }
     @Around(DAO_POINT)

@@ -1,7 +1,6 @@
 package cn.edu.whu.managesystem;
 
 import cn.edu.whu.managesystem.command.*;
-import cn.edu.whu.managesystem.controller.DimListController;
 import cn.edu.whu.managesystem.service.DimListService;
 import cn.edu.whu.managesystem.vo.CourseAndUnitVo;
 import cn.edu.whu.managesystem.vo.PowerPointVo;

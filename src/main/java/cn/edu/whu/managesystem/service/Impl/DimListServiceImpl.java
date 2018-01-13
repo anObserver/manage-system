@@ -1,19 +1,24 @@
 package cn.edu.whu.managesystem.service.Impl;
 
 import cn.edu.whu.managesystem.command.*;
-import cn.edu.whu.managesystem.dao.*;
 import cn.edu.whu.managesystem.model.CourseAndUnit;
 import cn.edu.whu.managesystem.model.KnowledgePoint;
 import cn.edu.whu.managesystem.model.PowerPoint;
 import cn.edu.whu.managesystem.model.QuestionType;
 import cn.edu.whu.managesystem.service.DimListService;
 import cn.edu.whu.managesystem.vo.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
+import static cn.edu.whu.managesystem.utils.FutureUtils.getFutureValue;
 
 /**
  * @author jamesli
@@ -23,84 +28,109 @@ import java.util.List;
 @Service
 public class DimListServiceImpl implements DimListService{
 
-    @Autowired
-    private CourseMapper courseMapper;
+    private static final Logger logger = LoggerFactory.getLogger(DimListServiceImpl.class);
 
     @Autowired
-    private KnowledgePointMapper knowledgePointMapper;
-
-    @Autowired
-    private PowerPointMapper powerPointMapper;
-
-    @Autowired
-    private QuestionTypeMapper questionTypeMapper;
+    private AsyncDimListService asyncDimListService;
 
 
     @Override
     public List<CourseAndUnitVo> getCourseAndUnits() {
-        List<CourseAndUnit> courseAndUnits = courseMapper.getAll();
+        Future<List<CourseAndUnit>> future = asyncDimListService.getCourseAndUnitsFuture();
         List<CourseAndUnitVo> courseAndUnitVos = new ArrayList<>();
-        for (CourseAndUnit courseAndUnit : courseAndUnits) {
-            CourseAndUnitVo courseAndUnitVo = new CourseAndUnitVo();
-            BeanUtils.copyProperties(courseAndUnit, courseAndUnitVo);
-            courseAndUnitVos.add(courseAndUnitVo);
+        try {
+            List<CourseAndUnit> courseAndUnits = future.get();
+            for (CourseAndUnit courseAndUnit : courseAndUnits) {
+                CourseAndUnitVo courseAndUnitVo = new CourseAndUnitVo();
+                BeanUtils.copyProperties(courseAndUnit, courseAndUnitVo);
+                courseAndUnitVos.add(courseAndUnitVo);
+            }
+        } catch (InterruptedException e) {
+            logger.info("getCourseAndUnits interrupt: ", e);
+        } catch (ExecutionException e) {
+            logger.info("getCourseAndUnits execute exception: ", e);
         }
         return courseAndUnitVos;
     }
 
     @Override
     public List<KnowledgePointVo> getKnowledgePoints(GetKnowledgePointCommand command) {
+        Future<List<KnowledgePoint>> future = asyncDimListService.getKnowledgePointsFuture(command);
         List<KnowledgePointVo> knowledgePointVos = new ArrayList<>();
-        List<KnowledgePoint> knowledgePoints = knowledgePointMapper.getAll(command);
-        for (KnowledgePoint knowledgePoint : knowledgePoints) {
-            KnowledgePointVo knowledgePointVo = new KnowledgePointVo();
-            BeanUtils.copyProperties(knowledgePoint, knowledgePointVo);
-            knowledgePointVos.add(knowledgePointVo);
+        try {
+            List<KnowledgePoint> knowledgePoints = future.get();
+            for (KnowledgePoint knowledgePoint : knowledgePoints) {
+                KnowledgePointVo knowledgePointVo = new KnowledgePointVo();
+                BeanUtils.copyProperties(knowledgePoint, knowledgePointVo);
+                knowledgePointVos.add(knowledgePointVo);
+            }
+        } catch (InterruptedException e) {
+            logger.info("getKnowledgePoints interrupt: ", e);
+        } catch (ExecutionException e) {
+            logger.info("getKnowledgePoints execute exception: ", e);
         }
         return knowledgePointVos;
     }
 
     @Override
     public List<PowerPointVo> getPowerPoints() {
+        Future<List<PowerPoint>> future = asyncDimListService.getPowerPointsFuture();
         List<PowerPointVo> powerPointVos = new ArrayList<>();
-        List<PowerPoint> powerPoints = powerPointMapper.getAll();
-        for (PowerPoint powerPoint : powerPoints) {
-            PowerPointVo powerPointVo = new PowerPointVo();
-            BeanUtils.copyProperties(powerPoint, powerPointVo);
-            powerPointVos.add(powerPointVo);
+        try {
+            List<PowerPoint> powerPoints = future.get();
+            for (PowerPoint powerPoint : powerPoints) {
+                PowerPointVo powerPointVo = new PowerPointVo();
+                BeanUtils.copyProperties(powerPoint, powerPointVo);
+                powerPointVos.add(powerPointVo);
+            }
+        } catch (InterruptedException e) {
+            logger.info("getPowerPoints interrupt: ", e);
+        } catch (ExecutionException e) {
+            logger.info("getPowerPoints execute exception: ", e);
         }
         return powerPointVos;
     }
 
     @Override
     public List<QuestionTypeVo> getQuestionTypes() {
+        Future<List<QuestionType>> future = asyncDimListService.getQuestionTypesFuture();
         List<QuestionTypeVo> questionTypeVos = new ArrayList<>();
-        List<QuestionType> questionTypes = questionTypeMapper.getAll();
-        for (QuestionType questionType : questionTypes) {
-            QuestionTypeVo questionTypeVo = new QuestionTypeVo();
-            BeanUtils.copyProperties(questionType, questionTypeVo);
-            questionTypeVos.add(questionTypeVo);
+        try {
+            List<QuestionType> questionTypes = future.get();
+            for (QuestionType questionType : questionTypes) {
+                QuestionTypeVo questionTypeVo = new QuestionTypeVo();
+                BeanUtils.copyProperties(questionType, questionTypeVo);
+                questionTypeVos.add(questionTypeVo);
+            }
+        } catch (InterruptedException e) {
+            logger.info("getQuestionTypes interrupt: ", e);
+        } catch (ExecutionException e) {
+            logger.info("getQuestionTypes execute exception: ", e);
         }
         return questionTypeVos;
     }
 
     @Override
     public Integer addCourseAndUnit(AddCourseAndUnitCommand command) {
-        return courseMapper.add(command);
+        Future<Integer> future = asyncDimListService.asyncAddCourseAndUnit(command);
+        return getFutureValue(Thread.currentThread().getStackTrace()[1].getMethodName(), future);
     }
 
     @Override
     public Integer addQuestionType(AddQuestionTypeCommand command) {
-        return questionTypeMapper.add(command);
+        Future<Integer> future = asyncDimListService.asyncAddQuestionType(command);
+        return getFutureValue(Thread.currentThread().getStackTrace()[1].getMethodName(), future);
     }
 
     @Override
     public Integer addKnowledgePoint(AddKnowledgePointCommand command) {
-        return knowledgePointMapper.add(command);
+        Future<Integer> future = asyncDimListService.asyncAddKnowledgePoint(command);
+        return getFutureValue(Thread.currentThread().getStackTrace()[1].getMethodName(), future);
     }
 
     @Override
     public Integer addPowerPoint(AddPowerPointCommand command) {
-        return powerPointMapper.add(command);
+        Future<Integer> future = asyncDimListService.asyncAddPowerPoint(command);
+        return getFutureValue(Thread.currentThread().getStackTrace()[1].getMethodName(), future);
     }
 }
