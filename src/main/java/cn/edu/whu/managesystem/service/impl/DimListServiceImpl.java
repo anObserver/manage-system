@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -38,6 +40,7 @@ public class DimListServiceImpl implements DimListService{
     public List<CourseAndUnitVo> getCourseAndUnits() {
         Future<List<CourseAndUnit>> future = asyncDimListService.getCourseAndUnitsFuture();
         List<CourseAndUnitVo> courseAndUnitVos = new ArrayList<>();
+        Map<Integer, CourseAndUnitVo> map = new HashMap<>();
         try {
             List<CourseAndUnit> courseAndUnits = future.get();
             if (courseAndUnits == null) {
@@ -45,8 +48,18 @@ public class DimListServiceImpl implements DimListService{
             }
             for (CourseAndUnit courseAndUnit : courseAndUnits) {
                 CourseAndUnitVo courseAndUnitVo = new CourseAndUnitVo();
-                BeanUtils.copyProperties(courseAndUnit, courseAndUnitVo);
-                courseAndUnitVos.add(courseAndUnitVo);
+                if (map.containsKey(courseAndUnit.getCourseId())) {
+                    courseAndUnitVo.setId(courseAndUnit.getUnitId());
+                    courseAndUnitVo.setName(courseAndUnit.getUnitName());
+                    map.get(courseAndUnit.getCourseId()).getUnit().add(courseAndUnitVo);
+                } else {
+                    courseAndUnitVo.setId(courseAndUnit.getCourseId());
+                    courseAndUnitVo.setName(courseAndUnit.getCourseName());
+                    courseAndUnitVo.setUnit(new ArrayList<>());
+                    courseAndUnitVo.getUnit().add(new CourseAndUnitVo(courseAndUnit.getUnitId(), courseAndUnit.getUnitName()));
+                    map.put(courseAndUnit.getCourseId(), courseAndUnitVo);
+                    courseAndUnitVos.add(courseAndUnitVo);
+                }
             }
         } catch (InterruptedException e) {
             logger.info("getCourseAndUnits interrupt: ", e);

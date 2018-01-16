@@ -3,6 +3,7 @@ package cn.edu.whu.managesystem.vo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author jamesli
@@ -11,8 +12,15 @@ import java.io.Serializable;
  */
 @Data
 public class CourseAndUnitVo implements Serializable{
-    private Integer courseId;
-    private Integer unitId;
-    private String courseName;
-    private String unitName;
+    private Integer id;
+    private String name;
+    private List<CourseAndUnitVo> unit;
+
+    public CourseAndUnitVo(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public CourseAndUnitVo() {
+    }
 }

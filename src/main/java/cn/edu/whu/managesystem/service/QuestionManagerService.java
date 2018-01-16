@@ -5,9 +5,8 @@ import cn.edu.whu.managesystem.command.InsertCommand;
 import cn.edu.whu.managesystem.command.SelectByCondCommand;
 import cn.edu.whu.managesystem.command.UpdateCommand;
 import cn.edu.whu.managesystem.vo.QuestionVo;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 /**
  * @author jamesli
@@ -22,7 +21,7 @@ public interface QuestionManagerService {
      * @param command 前端传的条件
      * @return 查询的试题
      */
-    List<QuestionVo> getQuestionsByCond(SelectByCondCommand command);
+    PageInfo<QuestionVo> getQuestionsByCond(SelectByCondCommand command);
 
     /**
      * 删除试题

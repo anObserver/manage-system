@@ -5,7 +5,6 @@ import cn.edu.whu.managesystem.command.SelectByCondCommand;
 import cn.edu.whu.managesystem.command.UpdateCommand;
 import cn.edu.whu.managesystem.model.Question;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -16,11 +15,11 @@ import java.util.List;
  */
 @Mapper
 public interface QuestionMapper {
-    public List<Question> getQuestionByCond(SelectByCondCommand command);
+    List<Question> getQuestionByCond(SelectByCondCommand command);
 
-    public Integer deleteQuestionById(Integer questionId);
+    Integer deleteQuestionById(Integer questionId);
 
-    public Integer updateQuestion(UpdateCommand command);
+    Integer updateQuestion(UpdateCommand command);
 
-    public Integer addQuestion(InsertCommand command);
+    Integer addQuestion(InsertCommand command);
 }

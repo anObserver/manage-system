@@ -11,6 +11,8 @@ import java.util.List;
  */
 @Data
 public class SelectByCondCommand extends BaseCommand{
+    private Integer pageNumber;
+    private Integer pageSize;
     private List<Integer> courseIds;
     private List<Integer> unitIds;
     private List<Integer> typeIds;

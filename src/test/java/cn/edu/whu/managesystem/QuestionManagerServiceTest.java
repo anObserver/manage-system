@@ -28,12 +28,14 @@ public class QuestionManagerServiceTest {
     @Test
     public void getQuestionByCondTest() {
         SelectByCondCommand command = new SelectByCondCommand();
-        command.setCourseIds(asList(1));
-        command.setDifficulty(asList(1));
-        command.setUnitIds(asList(1));
-        command.setKnowledgePointIds(asList(1));
-        command.setPowerPointIds(asList(1));
-        command.setTypeIds(asList(1));
+        command.setPageNumber(1);
+        command.setPageSize(2);
+        command.setCourseIds(asList(2));
+        command.setDifficulty(asList(10));
+        command.setUnitIds(asList(2));
+        command.setKnowledgePointIds(asList(10));
+        command.setPowerPointIds(asList(10));
+        command.setTypeIds(asList(10));
         System.out.println(questionManagerService.getQuestionsByCond(command));
     }
 

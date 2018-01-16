@@ -11,4 +11,21 @@ import java.io.Serializable;
  */
 @Data
 public class QuestionVo implements Serializable{
+    private Integer questionId;
+
+    private Integer courseId;
+
+    private Integer typeId;
+
+    private Integer unitId;
+
+    private Integer difficulty;
+
+    private Integer knowledgePointId;
+
+    private Integer powerPointId;
+
+    private String context;
+
+    private String answer;
 }

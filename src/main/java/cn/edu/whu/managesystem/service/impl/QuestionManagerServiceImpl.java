@@ -4,18 +4,18 @@ import cn.edu.whu.managesystem.command.DeleteCommand;
 import cn.edu.whu.managesystem.command.InsertCommand;
 import cn.edu.whu.managesystem.command.SelectByCondCommand;
 import cn.edu.whu.managesystem.command.UpdateCommand;
+import cn.edu.whu.managesystem.dao.QuestionMapper;
 import cn.edu.whu.managesystem.model.Question;
 import cn.edu.whu.managesystem.service.QuestionManagerService;
 import cn.edu.whu.managesystem.vo.QuestionVo;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 import static cn.edu.whu.managesystem.utils.FutureUtils.getFutureValue;
@@ -28,29 +28,24 @@ import static cn.edu.whu.managesystem.utils.FutureUtils.getFutureValue;
 @Service
 public class QuestionManagerServiceImpl implements QuestionManagerService{
 
-    private Logger logger = LoggerFactory.getLogger(QuestionManagerServiceImpl.class);
-
     @Autowired
     private AsyncQuestionManageService asyncQuestionManageService;
 
+    @Autowired
+    private QuestionMapper questionMapper;
+
     @Override
-    public List<QuestionVo> getQuestionsByCond(SelectByCondCommand command) {
+    public PageInfo<QuestionVo> getQuestionsByCond(SelectByCondCommand command) {
+        PageHelper.startPage(command.getPageNumber(), command.getPageSize());
         List<QuestionVo> questionVos = new ArrayList<>();
-        Future<List<Question>> future = asyncQuestionManageService.getQuestionsByCondFuture(command);
-        try {
-            List<Question> questions = future.get();
-            for (Question question : questions) {
-                QuestionVo questionVo = new QuestionVo();
-                BeanUtils.copyProperties(question, questionVo);
-                questionVos.add(questionVo);
-            }
-        } catch (InterruptedException e) {
-            logger.info("GetQuestionbycond interrupt: ", e);
-            Thread.currentThread().interrupt();
-        } catch (ExecutionException e) {
-            logger.info("GetQuestionbycond execute excetipn: ", e);
+        List<Question> questions = questionMapper.getQuestionByCond(command);
+
+        for (Question question : questions) {
+            QuestionVo questionVo = new QuestionVo();
+            BeanUtils.copyProperties(question, questionVo);
+            questionVos.add(questionVo);
         }
-        return questionVos;
+        return new PageInfo<>(questionVos);
     }
 
     @Override
