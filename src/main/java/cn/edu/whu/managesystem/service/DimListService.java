@@ -1,15 +1,8 @@
 package cn.edu.whu.managesystem.service;
 
 import cn.edu.whu.managesystem.command.*;
-import cn.edu.whu.managesystem.result.Result;
-import cn.edu.whu.managesystem.result.ResultGenerator;
-import cn.edu.whu.managesystem.vo.CourseAndUnitVo;
-import cn.edu.whu.managesystem.vo.KnowledgePointVo;
-import cn.edu.whu.managesystem.vo.PowerPointVo;
-import cn.edu.whu.managesystem.vo.QuestionTypeVo;
-import io.swagger.annotations.ApiOperation;
+import cn.edu.whu.managesystem.vo.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -20,19 +13,21 @@ import java.util.List;
  */
 @Service
 public interface DimListService {
-    public List<CourseAndUnitVo> getCourseAndUnits();
+    List<CourseAndUnitVo> getCourseAndUnits();
 
-    public List<KnowledgePointVo> getKnowledgePoints(GetKnowledgePointCommand command);
+    List<KnowledgePointVo> getKnowledgePoints(GetKnowledgePointCommand command);
 
-    public List<PowerPointVo> getPowerPoints();
+    List<PowerPointVo> getPowerPoints();
 
-    public List<QuestionTypeVo> getQuestionTypes();
+    List<QuestionTypeVo> getQuestionTypes();
 
-    public Integer addCourseAndUnit(AddCourseAndUnitCommand command);
+    Integer addCourseAndUnit(AddCourseAndUnitCommand command);
 
-    public Integer addQuestionType(AddQuestionTypeCommand command);
+    Integer addQuestionType(AddQuestionTypeCommand command);
 
-    public Integer addKnowledgePoint(AddKnowledgePointCommand command);
+    Integer addKnowledgePoint(AddKnowledgePointCommand command);
 
-    public Integer addPowerPoint(AddPowerPointCommand command);
+    Integer addPowerPoint(AddPowerPointCommand command);
+
+    List<UnitVo> getUnitsByCourseId(GetUnitCommand command);
 }

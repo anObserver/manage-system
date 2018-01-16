@@ -149,4 +149,29 @@ public class DimListServiceImpl implements DimListService{
         Future<Integer> future = asyncDimListService.asyncAddPowerPoint(command);
         return getFutureValue(Thread.currentThread().getStackTrace()[1].getMethodName(), future);
     }
+
+    @Override
+    public List<UnitVo> getUnitsByCourseId(GetUnitCommand command) {
+        Future<List<CourseAndUnit>> future = asyncDimListService.getCourseAndUnitsFuture();
+        List<UnitVo> unitVos = new ArrayList<>();
+        try {
+            List<CourseAndUnit> courseAndUnits = future.get();
+            if (courseAndUnits == null) {
+                return unitVos;
+            }
+            for (CourseAndUnit courseAndUnit : courseAndUnits) {
+                UnitVo unitVo = new UnitVo();
+                if (courseAndUnit.getCourseId().equals(command.getId())) {
+                    BeanUtils.copyProperties(courseAndUnit, unitVo);
+                    unitVos.add(unitVo);
+                }
+            }
+        } catch (InterruptedException e) {
+            logger.info("getCourseAndUnits interrupt: ", e);
+            Thread.currentThread().interrupt();
+        } catch (ExecutionException e) {
+            logger.info("getCourseAndUnits execute exception: ", e);
+        }
+        return unitVos;
+    }
 }

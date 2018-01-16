@@ -9,7 +9,10 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author jamesli
@@ -30,6 +33,12 @@ public class DimListController {
     @ApiOperation(value = "获取课程和单元信息", response = Result.class)
     public Result getCourseAndUnits() {
         return ResultGenerator.generateSuccessResult(dimListService.getCourseAndUnits());
+    }
+
+    @PostMapping("/units")
+    @ApiOperation(value = "根据课程ID获取单元", response = Result.class)
+    public Result getUnitsByCourseId(@RequestBody GetUnitCommand command) {
+        return ResultGenerator.generateSuccessResult(dimListService.getUnitsByCourseId(command));
     }
 
     @PostMapping("/addCourseAndUnit")
