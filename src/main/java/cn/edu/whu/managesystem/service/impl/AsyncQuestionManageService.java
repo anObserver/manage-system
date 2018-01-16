@@ -23,7 +23,7 @@ public class AsyncQuestionManageService {
 
     @Async
     public Future<Integer> asyncDeleteQuestion(DeleteCommand command) {
-        return new AsyncResult<>(questionMapper.deleteQuestionById(command.getId()));
+        return new AsyncResult<>(questionMapper.deleteQuestionByIds(command.getDeleteIds()));
     }
 
     @Async

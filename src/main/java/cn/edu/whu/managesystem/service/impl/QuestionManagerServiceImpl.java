@@ -39,13 +39,17 @@ public class QuestionManagerServiceImpl implements QuestionManagerService{
         PageHelper.startPage(command.getPageNumber(), command.getPageSize());
         List<QuestionVo> questionVos = new ArrayList<>();
         List<Question> questions = questionMapper.getQuestionByCond(command);
+        PageInfo<Question> pageInfos = new PageInfo<>(questions);
 
         for (Question question : questions) {
             QuestionVo questionVo = new QuestionVo();
             BeanUtils.copyProperties(question, questionVo);
             questionVos.add(questionVo);
         }
-        return new PageInfo<>(questionVos);
+        PageInfo<QuestionVo> pageInfo = new PageInfo<>();
+        BeanUtils.copyProperties(pageInfos, pageInfo);
+        pageInfo.setList(questionVos);
+        return pageInfo;
     }
 
     @Override

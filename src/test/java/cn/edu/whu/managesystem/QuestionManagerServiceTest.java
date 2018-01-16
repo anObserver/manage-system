@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.google.common.primitives.Ints.asList;
 
 /**
@@ -42,7 +45,10 @@ public class QuestionManagerServiceTest {
     @Test
     public void deleteQuestionTest() {
         DeleteCommand command = new DeleteCommand();
-        command.setId(1);
+        List<Integer> list = new ArrayList<>();
+        list.add(16);
+        list.add(17);
+        command.setDeleteIds(list);
         System.out.println(questionManagerService.deleteQuestion(command));
     }
 

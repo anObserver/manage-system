@@ -29,15 +29,30 @@ public class QuestionManageController {
     @PostMapping("/questions")
     @ApiOperation(value = "根据条件查询试题", response = Result.class)
     public Result getQuestionsByCond(@RequestBody SelectByCondCommand command) {
+        if (command.getCourseIds().isEmpty()) {
+            command.setCourseIds(null);
+        }
+        if (command.getDifficulty().isEmpty()) {
+            command.setDifficulty(null);
+        }
+        if (command.getTypeIds().isEmpty()) {
+            command.setTypeIds(null);
+        }
+        if (command.getKnowledgePointIds().isEmpty()) {
+            command.setKnowledgePointIds(null);
+        }
+        if (command.getUnitIds().isEmpty()) {
+            command.setUnitIds(null);
+        }
+        if (command.getPowerPointIds().isEmpty()) {
+            command.setPowerPointIds(null);
+        }
         return ResultGenerator.generateSuccessResult(questionManagerService.getQuestionsByCond(command));
     }
 
     @PostMapping("/delete")
     @ApiOperation(value="根据ID删除试题", response = Result.class)
     public Result deleteQuestion(@RequestBody DeleteCommand command) {
-        if (!check(command)) {
-            return ResultGenerator.generateFailResult("参数错误");
-        }
         return ResultGenerator.generateSuccessResult(questionManagerService.deleteQuestion(command));
     }
 

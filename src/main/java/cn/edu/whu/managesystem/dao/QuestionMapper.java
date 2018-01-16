@@ -17,7 +17,7 @@ import java.util.List;
 public interface QuestionMapper {
     List<Question> getQuestionByCond(SelectByCondCommand command);
 
-    Integer deleteQuestionById(Integer questionId);
+    Integer deleteQuestionByIds(List<Integer> questionIds);
 
     Integer updateQuestion(UpdateCommand command);
 
