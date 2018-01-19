@@ -1,4 +1,4 @@
-package cn.edu.whu.managesystem.aop;
+package cn.edu.whu.managesystem.utils.aop;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;

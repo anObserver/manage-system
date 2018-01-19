@@ -1,4 +1,4 @@
-package cn.edu.whu.managesystem.configure;
+package cn.edu.whu.managesystem.utils.configure;
 
 import com.github.pagehelper.PageHelper;
 import org.slf4j.Logger;

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
 
-import static cn.edu.whu.managesystem.utils.FutureUtils.getFutureValue;
+import static cn.edu.whu.managesystem.utils.async.FutureUtils.getFutureValue;
 
 /**
  * @author jamesli

@@ -1,8 +1,8 @@
 package cn.edu.whu.managesystem.controller;
 
 import cn.edu.whu.managesystem.command.*;
-import cn.edu.whu.managesystem.result.Result;
-import cn.edu.whu.managesystem.result.ResultGenerator;
+import cn.edu.whu.managesystem.utils.result.Result;
+import cn.edu.whu.managesystem.utils.result.ResultGenerator;
 import cn.edu.whu.managesystem.service.QuestionManagerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

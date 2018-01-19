@@ -1,4 +1,4 @@
-package cn.edu.whu.managesystem.result;
+package cn.edu.whu.managesystem.utils.result;
 
 import org.springframework.stereotype.Component;
 

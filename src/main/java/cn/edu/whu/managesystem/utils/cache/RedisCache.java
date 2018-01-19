@@ -1,4 +1,4 @@
-package cn.edu.whu.managesystem.utils;
+package cn.edu.whu.managesystem.utils.cache;
 
 import org.apache.ibatis.cache.Cache;
 import org.slf4j.Logger;

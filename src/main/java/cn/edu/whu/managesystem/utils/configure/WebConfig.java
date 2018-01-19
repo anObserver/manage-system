@@ -1,4 +1,4 @@
-package cn.edu.whu.managesystem.configure;
+package cn.edu.whu.managesystem.utils.configure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
