@@ -1,16 +1,8 @@
 package cn.edu.whu.managesystem.utils.cache;
 
 import org.apache.ibatis.cache.Cache;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.redis.connection.RedisConnection;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
-import org.springframework.data.redis.serializer.JdkSerializationRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializer;
-import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * @author jamesli
@@ -18,7 +10,41 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  * @date 2018/1/12
  */
 public class RedisCache implements Cache{
+    @Override
+    public String getId() {
+        return null;
+    }
 
+    @Override
+    public void putObject(Object o, Object o1) {
+
+    }
+
+    @Override
+    public Object getObject(Object o) {
+        return null;
+    }
+
+    @Override
+    public Object removeObject(Object o) {
+        return null;
+    }
+
+    @Override
+    public void clear() {
+
+    }
+
+    @Override
+    public int getSize() {
+        return 0;
+    }
+
+    @Override
+    public ReadWriteLock getReadWriteLock() {
+        return null;
+    }
+   /*
     private Logger logger = LoggerFactory.getLogger(RedisCache.class);
 
     private static JedisConnectionFactory jedisConnectionFactory;
@@ -135,4 +161,5 @@ public class RedisCache implements Cache{
         RedisCache.jedisConnectionFactory = jedisConnectionFactory;
     }
 
+*/
 }
